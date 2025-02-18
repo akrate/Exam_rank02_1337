@@ -1,51 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
+/*   rev_wstr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoussama <aoussama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 16:06:19 by aoussama          #+#    #+#             */
-/*   Updated: 2025/02/18 16:06:20 by aoussama         ###   ########.fr       */
+/*   Created: 2025/02/18 16:04:05 by aoussama          #+#    #+#             */
+/*   Updated: 2025/02/18 16:04:08 by aoussama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <unistd.h>
+#include <stdlib.h>
 
 int main(int ac,char **av)
 {
     int i = 0;
-    int j;
-    if (ac == 2)
+    int j = 0;
+    int es = 0;
+    if (ac = 2)
     {
-        while (av[1][i] <= 32)
-            {
-                i++;
-            }
         while (av[1][i])
+            i++;
+        while (i >= 0)
         {
-            j = 0;
-            while (av[1][i] <= 32)
+            while (av[1][i] != ' ' && i >= 0)
             {
-                i++;
+                i--;
+            }
+            j = i + 1;
+            while (av[1][j] != ' ' && av[1][j] != '\0')
+            {
+                write(1,&av[1][j],1);
                 j++;
-                if (av[1][i] == '\0')
-                {
-                    write(1,"\n",1);
-                    return (0);
-                }
-            }if (j >= 1)
+                es = 1;
+            }
+            if (es == 1 && i > 0)
             {
                 write(1," ",1);
-                j = 0;
+                es = 0;
             }
-            while (av[1][i] > 32 &&av[1][i])
-            {
-                write(1,&av[1][i],1);
-                i++;
-            }
+            i--;
         }
     }
     write(1,"\n",1);
+
 }
